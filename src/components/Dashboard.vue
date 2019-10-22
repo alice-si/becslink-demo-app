@@ -1,35 +1,50 @@
 <template>
-  <div>
+  <div class="form-wizard-container">
     <form-wizard @on-complete="onComplete"
+      color="#9355de"
       title=""
       subtitle="" >
-      <tab-content title="Personal details"
-                    icon="ti-user">
-        My first tab content
-      </tab-content>
-      <tab-content title="Additional Info"
+      <tab-content title="Initiatives and parties setup"
                     icon="ti-settings">
-        My second tab content
+        <InitiativesSetup />
       </tab-content>
-      <tab-content title="Last step"
+      <tab-content title="Goals per Service Provider"
+                    icon="ti-view-list-alt">
+        <GoalsSetup />
+      </tab-content>
+      <tab-content title="Students and teachers"
+                    icon="ti-user">
+        <StudentsAndTeachersSetup />
+      </tab-content>
+      <tab-content title="Sponsors and ESGs"
                     icon="ti-check">
-        Yuhuuu! This seems pretty damn simple
+        <SponsorsAndESGsSetup />
       </tab-content>
-    </form-wizard@on-complete="onComplete">
+    </form-wizard>
   </div>
 </template>
 
 <script>
 import {FormWizard, TabContent} from 'vue-form-wizard'
+import InitiativesSetup from './Initiatives/InitiativesSetup'
+import GoalsSetup from './GoalsSetup'
+import StudentsAndTeachersSetup from './StudentsAndTeachersSetup'
+import SponsorsAndESGsSetup from './SponsorsAndESGsSetup'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
 
 export default {
   components: {
     FormWizard,
-    TabContent
+    TabContent,
+    InitiativesSetup,
+    GoalsSetup,
+    StudentsAndTeachersSetup,
+    SponsorsAndESGsSetup,
   },
   methods: {
     onComplete() {
-      alert('Yay. Done!');
+      alert('Yay. Done!')
     }
   }
 }
@@ -37,5 +52,8 @@ export default {
 </script>
 
 <style scoped>
-
+  /* .form-wizard-container {
+    width: 80vw;
+    margin: auto;
+  } */
 </style>
