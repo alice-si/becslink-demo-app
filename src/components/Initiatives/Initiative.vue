@@ -19,11 +19,13 @@
 
           <SchoolsSelector
             v-bind:selected="inputs.schools"
-            v-bind:updateSelection="updateSelectedSchools" />
+            v-bind:updateSelection="updateSelectedSchools"
+            v-bind:addNewSchool="addSchool" />
 
           <ServiceProviderSelector
             v-bind:selected="inputs.serviceProviders"
-            v-bind:updateSelection="updateSelectedServiceProviders" />
+            v-bind:updateSelection="updateSelectedServiceProviders"
+            v-bind:addNewServiceProvider="addServiceProvider" />
         </form>
 
         <div v-if="!editing" class="details">
@@ -62,7 +64,6 @@
       </div>
     </div>
       
-    <!-- </div> -->
   </div>
 </template>
 
@@ -91,29 +92,21 @@ export default {
     saveInitiative: Function,
     startEditing: Function,
     deleteInitiative: Function,
+    addSchool: Function,
+    addServiceProvider: Function,
   },
   methods: {
     updateSelectedSchools(schools) {
-      this.inputs.schools = schools;
+      this.inputs.schools = schools
     },
     updateSelectedServiceProviders(serviceProviders) {
-      this.inputs.serviceProviders = serviceProviders;
+      this.inputs.serviceProviders = serviceProviders
     }
   }
 }
 </script>
 
 <style scoped>
-  /* .initiative-card {
-    height: 200px;
-  } */
-  .initiative {
-    /* border: 1px solid black; */
-  }
-
-  .mdl-text-field {
-    /* margin: 50px; */
-  }
 
   .manage-icons {
     margin-top: 20px;

@@ -14,17 +14,13 @@
 import Selector from './Selector'
 
 export default {
-  methods: {
-    addNewSchool() {
-      alert('Adding a new school');
-    },
-  },
   components: {
     Selector,
   },
   props: {
     selected: Array,
     updateSelection: Function,
+    addNewSchool: Function,
   }
 }
 </script>

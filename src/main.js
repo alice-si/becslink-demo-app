@@ -13,4 +13,4 @@ Vue.directive('mdl', {
       window.componentHandler.upgradeElement(el);
     }
   }
-});
+})

@@ -16,7 +16,6 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import _ from 'lodash'
 import state from '../../state'
 
 const addNewText = '+ Add new';
@@ -49,9 +48,9 @@ export default {
     value: function(newVal) {
       if (newVal.find(el => el.name == addNewText)) {
         this.value = this.value.filter(el => el.name !== addNewText)
-        toastr.success('Creating a new school')
       }
-      this.updateSelection(this.value);
+      this.addNew()
+      this.updateSelection(this.value)
     }
   },
 

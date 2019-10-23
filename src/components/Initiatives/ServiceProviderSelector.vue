@@ -4,6 +4,7 @@
     <Selector
       v-bind:selected="selected"
       v-bind:updateSelection="updateSelection"
+      v-bind:addNew="addNewServiceProvider"
       collection="serviceProviders" />
   </div>
 </template>
@@ -18,6 +19,7 @@ export default {
   props: {
     selected: Array,
     updateSelection: Function,
+    addNewServiceProvider: Function,
   }
 }
 </script>

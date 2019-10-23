@@ -1,6 +1,14 @@
 <template>
   <div class="initiatives-setup-container">
 
+    <AddNew
+      :postAdd="postAdd"
+      :isPanelOpen="isPanelOpen"
+      :collection="collectionForAdding"
+      :entityTitle="entityTitleForAdding"
+      :onAddPanelClosing="onAddPanelClosing"
+      />
+
     <div class="mdl-grid">
       <Initiative
         v-for="initiative in initiatives"
@@ -10,6 +18,8 @@
         v-bind:saveInitiative="saveInitiative"
         v-bind:deleteInitiative="deleteInitiative"
         v-bind:startEditing="startEditing"
+        v-bind:addSchool="addSchool"
+        v-bind:addServiceProvider="addServiceProvider"
         />
     </div>
 
@@ -25,6 +35,7 @@
 import Vue from 'vue'
 import state from '../../state'
 import Initiative from './Initiative'
+import AddNew from './AddNew'
 
 export default {
   data() {
@@ -38,6 +49,7 @@ export default {
   },
   components: {
     Initiative,
+    AddNew,
   },
   computed: {
     initiatives() {
@@ -48,19 +60,49 @@ export default {
         result.push({ name: "" })
       }
       return result
+    },
+    collectionForAdding() {
+      if (this.addingSchool) {
+        return 'schools'
+      }
+      return 'serviceProviders'
+    },
+    entityTitleForAdding() {
+      if (this.addingSchool) {
+        return 'school'
+      }
+      return 'service provider'
+    },
+    isPanelOpen() {
+      return this.addingSchool || this.addingServiceProvider
     }
   },
   methods: {
     addNewInitiative() {
       this.addingInitiative = true
     },
+    addSchool() {
+      Vue.set(this, 'addingServiceProvider', false)
+      Vue.set(this, 'addingSchool', true)
+    },
+    addServiceProvider() {
+      Vue.set(this, 'addingServiceProvider', true)
+      Vue.set(this, 'addingSchool', false)
+    },
+    onAddPanelClosing() {
+      Vue.set(this, 'addingServiceProvider', false)
+      Vue.set(this, 'addingSchool', false)
+    },
+    postAdd(collection, data) {
+      // TODO
+    },
     saveInitiative(newData, oldData) {
       if (newData.name == "") {
-        toastr.warning('Initiative name cannot be empty');
+        window.toastr.warning('Initiative name cannot be empty');
         return;
       }
       if (newData.name != oldData.name && this.state.initiatives[newData.name]) {
-        toastr.warning(`Initiative with the name: "${newData.name}" already exists.`
+        window.toastr.warning(`Initiative with the name: "${newData.name}" already exists.`
                         + ' Please select another name');
         return;
       }
