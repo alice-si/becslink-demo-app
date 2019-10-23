@@ -13,7 +13,7 @@
           
           <div v-mdl class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input v-model="inputs.cost" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-            <label class="mdl-textfield__label" for="sample4">Cost ($)</label>
+            <label class="mdl-textfield__label" for="sample4">Cost (£)</label>
             <span class="mdl-textfield__error">Input is not a number!</span>
           </div>
 
@@ -28,9 +28,27 @@
             v-bind:addNewServiceProvider="addServiceProvider" />
         </form>
 
-        <div v-if="!editing" class="details">
-          <h4>{{ data.name }}</h4>
+        <div v-if="!editing" class="initiative-details">
+          <h3>{{ data.name }}</h3>
           <h6>Cost: £{{ data.cost }}</h6>
+        </div>
+
+        <div v-if="!editing" class="additional-details lightgray-bg">
+          <h5>Schools</h5>
+          <ul>
+            <li v-for="school in data.schools" :key="school.name">
+              {{ school.name }}
+            </li>
+          </ul>
+        </div>
+
+        <div v-if="!editing" class="additional-details">
+          <h5>Service providers</h5>
+          <ul>
+            <li v-for="serviceProvider in data.serviceProviders" :key="serviceProvider.name">
+              {{ serviceProvider.name }}
+            </li>
+          </ul>
         </div>
 
         <!-- TODO add schools selector -->
@@ -108,12 +126,53 @@ export default {
 
 <style scoped>
 
+  .mdl-card {
+    min-height: 400px;
+  }
+
+  .lightgray-bg {
+    background: #f8fafd;
+  }
+
+  .additional-details {
+    min-height: 170px;
+  }
+
+  .additional-details ul {
+    list-style-type: none;
+    padding: 0;
+    /* text-align: left; */
+    /* width: 200px; */
+    /* margin: auto; */
+  }
+
+  .initiative-details {
+    background: #1cb8c4;
+    min-height: 170px;
+    /* background: #9355de; */
+  }
+
+  .initiative-details h3 {
+    margin-top: 40px;
+    color: white;
+    /* font-weight: bold; */
+  }
+
+  .initiative-details h6 {
+    color: white;
+  }
+
   .manage-icons {
     margin-top: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
   }
 
   .manage-icon {
     color: #1cb8c4;
+    text-align: left;
+    font-size: 30px !important;
   }
 
   .manage-icon :hover {
@@ -125,5 +184,10 @@ export default {
     font-size: 14px;
     font-weight: bold;
     color: black;
+  }
+
+  form {
+    padding: 20px;
+    margin-bottom: 50px;
   }
 </style>

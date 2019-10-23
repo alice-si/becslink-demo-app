@@ -13,7 +13,7 @@
                     <label class="mdl-textfield__label" for="sample1">Name</label>
                   </div>
 
-                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  <button @click="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                     Save
                   </button>
                 </div>
@@ -22,26 +22,42 @@
     </div>
 </template>
 <script>
-    export default {
-        props: {
-          collection: String,
-          entityTitle: String,
-          isPanelOpen: Boolean,
-          postAdd: Function,
-          onAddPanelClosing: Function
-        },
-        data: () => ({
-          inputs: {
-            name: ""
-          }
-        }),
-        methods: {
-          closeSidebarPanel() {
-            this.isPanelOpen = false
-            this.onAddPanelClosing()
-          }
+import state from '../../state'
+
+export default {
+    props: {
+      collection: String,
+      entityTitle: String,
+      isPanelOpen: Boolean,
+      postAdd: Function,
+      onAddPanelClosing: Function
+    },
+    data: () => ({
+      inputs: {
+        name: ""
+      },
+      state
+    }),
+    methods: {
+      closeSidebarPanel() {
+        this.onAddPanelClosing()
+      },
+      save() {
+        if (!this.inputs.name) {
+          window.toastr.warning('Name can not be empty')
+          return
         }
+        if (this.state[this.collection][this.inputs.name]) {
+          window.toastr.warning(`${this.entityTitle} with the name "${this.inputs.name}" already exists`)
+          return
+        }
+        this.state.defaultUpsert(this.inputs, this.collection)
+        this.postAdd(this.collection, this.inputs)
+        this.inputs.name = ""
+        this.closeSidebarPanel()
+      }
     }
+}
 </script>
 <style>
     .slide-enter-active,

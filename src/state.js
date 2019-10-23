@@ -11,6 +11,8 @@ let State = {
   schools: {},
   serviceProviders: {},
 
+  hacks: {},
+
   // METHODS
 
   // Initiative is identified by name
@@ -71,7 +73,19 @@ let State = {
     let newCollection = Object.assign({}, this[collection]);
     delete newCollection[name];
     Vue.set(this, collection, newCollection);
-    this.updateCollectionInLocalStorage(collection);
+    this.updateCollectionInLocalStorage(collection)
+  },
+
+  clearCollection(collection) {
+    Vue.set(this, collection, {});
+    this.updateCollectionInLocalStorage(collection)
+  },
+
+  clearState() {
+    for (let collection of ['initiatives', 'schools', 'serviceProviders']) {
+      console.log(`Removing collection: ${collection}`)
+      this.clearCollection(collection)
+    }
   },
 }
 

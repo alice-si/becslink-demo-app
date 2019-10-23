@@ -11,12 +11,14 @@
       placeholder="Pick some"
       label="name" track-by="name"
       :preselect-first="false" />
+
   </div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
 import state from '../../state'
+import Vue from 'vue'
 
 const addNewText = '+ Add new';
 
@@ -38,8 +40,9 @@ export default {
   },
   computed: {
     options() {
-      let res = Object.keys(this.state[this.collection])
-      res.push({ name: 'test' })
+      let res =
+        Object.keys(this.state[this.collection])
+        .map(el => { return { name: el } })
       res.push({ name: addNewText })
       return res
     }
@@ -48,8 +51,14 @@ export default {
     value: function(newVal) {
       if (newVal.find(el => el.name == addNewText)) {
         this.value = this.value.filter(el => el.name !== addNewText)
+        let selectorComponent = this
+        this.state.hacks.onAddingComplete = function(name) {
+          let newVal = selectorComponent.value;
+          newVal.push({ name })
+          Vue.set(selectorComponent, 'value', newVal)
+        }
+        this.addNew()
       }
-      this.addNew()
       this.updateSelection(this.value)
     }
   },
@@ -58,8 +67,5 @@ export default {
 </script>
 
 <style scoped>
-.multiselect-wrapper {
-  width: 80%;
-  margin: auto;
-}
+
 </style>

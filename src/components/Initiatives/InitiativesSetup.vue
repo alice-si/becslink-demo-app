@@ -23,11 +23,11 @@
         />
     </div>
 
-    <span
+    <div
       v-on:click="addNewInitiative()"
       class="add-new-link">
       + Add initiative
-    </span>
+    </div>
   </div>
 </template>
 
@@ -94,7 +94,9 @@ export default {
       Vue.set(this, 'addingSchool', false)
     },
     postAdd(collection, data) {
-      // TODO
+      if (this.state.hacks.onAddingComplete) {
+        this.state.hacks.onAddingComplete(data.name)
+      }
     },
     saveInitiative(newData, oldData) {
       if (newData.name == "") {
@@ -132,6 +134,7 @@ export default {
   .add-new-link {
     color: #1cb8c4;
     font-size: 18px;
+    margin-top: 30px;
   }
 
   .initiatives-setup-container {

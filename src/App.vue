@@ -7,7 +7,7 @@
         </div>
 
         <div class="logo logo-right">
-          <img src="./assets/alice-si-logo.png" />
+          <img @click="clearData()" src="./assets/alice-si-logo.png" />
         </div>
       </div>
     </div>
@@ -28,6 +28,13 @@ export default {
   name: 'app',
   components: {
     Dashboard,
+  },
+  methods: {
+    clearData() {
+      if (confirm('Are you sure you want to remove all the data (initiatives, schools, service providers)?')) {
+        state.clearState()
+      }
+    }
   }
 }
 
