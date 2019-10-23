@@ -17,6 +17,12 @@
             <span class="mdl-textfield__error">Input is not a number!</span>
           </div>
 
+          <div v-mdl class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input v-model="inputs.upfront" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+            <label class="mdl-textfield__label" for="sample4">Upfront allocation (%)</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+
           <SchoolsSelector
             v-bind:selected="inputs.schools"
             v-bind:updateSelection="updateSelectedSchools"
@@ -30,7 +36,8 @@
 
         <div v-if="!editing" class="initiative-details">
           <h3>{{ data.name }}</h3>
-          <h6>Cost: £{{ data.cost }}</h6>
+          <h6>Cost: £{{ data.cost }} | Upfront: {{ data.upfront }}%</h6>
+          
         </div>
 
         <div v-if="!editing" class="additional-details lightgray-bg">
@@ -99,6 +106,7 @@ export default {
       inputs: {
         name: this.data.name,
         cost: this.data.cost,
+        upfront: this.data.upfront,
         schools: this.data.schools,
         serviceProviders: this.data.serviceProviders,
       },
