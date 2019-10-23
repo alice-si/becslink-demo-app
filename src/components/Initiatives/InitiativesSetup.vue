@@ -41,7 +41,9 @@ export default {
   },
   computed: {
     initiatives() {
-      let result = Object.values(this.state.initiatives)
+      let result = Object.values(this.state.initiatives).sort(function(a, b) {
+        return a.name.localeCompare(b.name)
+      })
       if (this.addingInitiative) {
         result.push({ name: "" })
       }
@@ -54,9 +56,12 @@ export default {
     },
     saveInitiative(newData, oldData) {
       if (newData.name == "") {
+        toastr.warning('Initiative name cannot be empty');
         return;
       }
       if (newData.name != oldData.name && this.state.initiatives[newData.name]) {
+        toastr.warning(`Initiative with the name: "${newData.name}" already exists.`
+                        + ' Please select another name');
         return;
       }
       this.state.deleteInitiative(oldData.name)
@@ -78,11 +83,17 @@ export default {
 </script>
 
 <style scoped>
-  div {
+  .add-new-link {
     cursor: pointer
   }
 
   .add-new-link {
-    color: #1cb8c4
+    color: #1cb8c4;
+    font-size: 18px;
   }
+
+  .initiatives-setup-container {
+    min-height: 50vh;
+  }
+
 </style>

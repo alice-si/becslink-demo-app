@@ -56,7 +56,6 @@ let State = {
 
   // It should be called on each collection update
   updateCollectionInLocalStorage(collection) {
-    console.log('asdas');
     localStorage[getLocalStorageKey(collection)] =
       JSON.stringify(this[collection])
   },
