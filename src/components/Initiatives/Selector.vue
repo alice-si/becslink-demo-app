@@ -66,6 +66,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.multiselect__option--highlight,.multiselect__tag {
+  background: #1cb8c4 !important;
 
+}
 </style>
