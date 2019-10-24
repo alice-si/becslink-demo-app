@@ -1,7 +1,8 @@
 <template>
   <div class="form-wizard-container">
+    <!-- Old violet: color="#9355de" -->
     <form-wizard @on-complete="onComplete"
-      color="#9355de"
+      color="#1cb8c4"
       title=""
       subtitle="" >
       <tab-content title="Initiatives and parties setup"
@@ -51,7 +52,30 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
+  .stepTitle {
+    margin-top: 5px;
+  }
+
+  .wizard-tab-content {
+    padding-top: 0;
+  }
+
+  h4 {
+    margin-top: 3px;
+  }
+
+  .wizard-footer-left {
+    position: absolute;
+    top: 230px;
+    left: 10vw;
+  }
+
+  .wizard-footer-right {
+    position: absolute;
+    top: 230px;
+    right: 15vw;
+  }
   /* .form-wizard-container {
     width: 80vw;
     margin: auto;

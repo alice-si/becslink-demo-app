@@ -29,6 +29,7 @@
             v-bind:addNewSchool="addSchool" />
 
           <ServiceProviderSelector
+            class="service-provider-selector"
             v-bind:selected="inputs.serviceProviders"
             v-bind:updateSelection="updateSelectedServiceProviders"
             v-bind:addNewServiceProvider="addServiceProvider" />
@@ -49,7 +50,7 @@
           </ul>
         </div>
 
-        <div v-if="!editing" class="additional-details">
+        <div v-if="!editing" class="additional-details additional-details-bottom">
           <h5>Service providers</h5>
           <ul>
             <li v-for="serviceProvider in data.serviceProviders" :key="serviceProvider.name">
@@ -64,22 +65,42 @@
 
         <!-- Accent-colored raised button with ripple -->
         <div class="manage-icons">
-          <span v-on:click="saveInitiative(inputs, data)"
+          <!-- <span v-on:click="saveInitiative(inputs, data)"
             v-if="editing"
             class="manage-icon" >
             <i class="material-icons">save</i>
-          </span>
+          </span> -->
 
-          <span v-on:click="startEditing(data)"
+          <!-- <span v-on:click="startEditing(data)"
             v-if="!editing" 
             class="manage-icon" >
             <i class="material-icons">edit</i>
-          </span>
+          </span> -->
 
-          <span v-on:click="deleteInitiative(data.name)" v-if="!editing"
+          <button v-mdl v-on:click="cancelEditing(data)" v-if="editing" 
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
+            <i class="material-icons">close</i>
+          </button>
+
+          <button v-mdl v-on:click="saveInitiative(inputs, data)" v-if="editing" 
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
+            <i class="material-icons">done</i>
+          </button>
+
+          <button v-on:click="startEditing(data)" v-if="!editing" 
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
+            <i class="material-icons">edit</i>
+          </button>
+
+          <button v-on:click="deleteInitiative(data.name)" v-if="!editing"
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
+            <i class="material-icons">delete</i>
+          </button>
+
+          <!-- <span v-on:click="deleteInitiative(data.name)" v-if="!editing"
             class="manage-icon">
             <i class="material-icons">delete</i>
-          </span>
+          </span> -->
         </div>
 
         <!-- <div v-if="!editing">
@@ -117,6 +138,7 @@ export default {
     data: Object,
     saveInitiative: Function,
     startEditing: Function,
+    cancelEditing: Function,
     deleteInitiative: Function,
     addSchool: Function,
     addServiceProvider: Function,
@@ -127,7 +149,7 @@ export default {
     },
     updateSelectedServiceProviders(serviceProviders) {
       this.inputs.serviceProviders = serviceProviders
-    }
+    },
   }
 }
 </script>
@@ -144,6 +166,10 @@ export default {
 
   .additional-details {
     min-height: 170px;
+  }
+
+  .additional-details-bottom {
+    min-height: 220px;
   }
 
   .additional-details ul {
@@ -177,6 +203,15 @@ export default {
     right: 20px;
   }
 
+  i.material-icons {
+    color: white;
+  }
+
+  .mdl-button {
+    background: #1cb8c4;
+    margin-left: 5px;
+  }
+
   h6 {
     font-size: 14px;
     font-weight: bold;
@@ -186,5 +221,9 @@ export default {
   form {
     padding: 20px;
     margin-bottom: 50px;
+  }
+
+  .service-provider-selector {
+    margin-bottom: 30px;
   }
 </style>

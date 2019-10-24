@@ -1,6 +1,6 @@
 <template>
   <div class="students-and-teachers-setup-container">
-    <h2>Students and teachers setup will be here</h2>
+    <h4>Create IDs for Students and <br/> Teachers per school</h4>
   </div>
 </template>
 

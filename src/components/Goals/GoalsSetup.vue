@@ -1,6 +1,7 @@
 <template>
   <div class="goals-setup-container">
     <!-- <h2>Goals setup</h2> -->
+    <h4>Define goals per Service Provider,<br /> costs and payment terms</h4>
     <GoalsForServiceProvider
       v-for="serviceProvider in serviceProviders"
       :key="serviceProvider"

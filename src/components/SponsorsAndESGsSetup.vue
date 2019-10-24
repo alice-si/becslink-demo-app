@@ -1,6 +1,9 @@
 <template>
   <div class="sponsors-and-esgs-setup-container">
-    <h2>Sponsors and ESGs setup will be here</h2>
+    <h4>
+      Create the Sponsors of each initiative
+      <br />and measure impact based on their ESGs
+    </h4>
   </div>
 </template>
 

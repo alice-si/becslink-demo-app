@@ -51,6 +51,6 @@ export default {
 
 <style scoped>
 .mdl-textfield {
-  max-width: 15vw;
+  max-width: 12vw;
 }
 </style>

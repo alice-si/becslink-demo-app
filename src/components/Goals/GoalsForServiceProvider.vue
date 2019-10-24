@@ -3,7 +3,8 @@
     <h5>Goals for {{ serviceProvider }}</h5>
 
     <table v-mdl class="mdl-data-table mdl-js-data-table">
-      <thead  v-bind:class="{ darkened: (goalOnEditName || addingNewGoal) }">
+      <!-- <thead  v-bind:class="{ darkened: (goalOnEditName || addingNewGoal) }"> -->
+      <thead>
       <tr>
         <th> Goal </th>
         <th> Cost per unit </th>
@@ -62,7 +63,7 @@
     </table>
 
     <div @click="startNewGoalEditing()" class="add-new-link">
-      + Add new goal for "{{ serviceProvider }}"
+      + Add new goal for {{ serviceProvider }}
     </div>
 
     <!-- <hr /> -->
@@ -162,11 +163,12 @@ export default {
   color: #1cb8c4;
   font-size: 14px;
   margin-top: 20px;
-  margin-bottom: 100px
+  /* margin-bottom: 100px; */
 }
 
 .mdl-textfield {
-  padding-right: 30px;
+  /* padding-right: 30px; */
+  /* padding-left: 30px; */
 }
 
 .add-new-link {
@@ -187,6 +189,10 @@ tr th {
 
 .hidden {
   display: none;
+}
+
+h5 {
+  margin-top: 80px;
 }
 
 </style>

@@ -1,6 +1,14 @@
 <template>
   <div class="initiatives-setup-container">
 
+    <h4>Create initiatives, Service providers and Schools</h4>
+
+    <div
+      v-on:click="addNewInitiative()"
+      class="add-new-link">
+      + Add initiative
+    </div>
+
     <AddNew
       :postAdd="postAdd"
       :isPanelOpen="isPanelOpen"
@@ -13,21 +21,17 @@
       <Initiative
         v-for="initiative in initiatives"
         v-bind:key="initiative.name"
-        v-bind:editing="editing[initiative.name]"
+        v-bind:editing="editing[initiative.name] || (initiative.name == '')"
         v-bind:data="initiative"
         v-bind:saveInitiative="saveInitiative"
         v-bind:deleteInitiative="deleteInitiative"
         v-bind:startEditing="startEditing"
         v-bind:addSchool="addSchool"
         v-bind:addServiceProvider="addServiceProvider"
+        v-bind:cancelEditing="cancelEditing"
         />
     </div>
 
-    <div
-      v-on:click="addNewInitiative()"
-      class="add-new-link">
-      + Add initiative
-    </div>
   </div>
 </template>
 
@@ -116,6 +120,12 @@ export default {
     startEditing(initiative) {
       Vue.set(this.editing, initiative.name, true)
     },
+    cancelEditing(initiative) {
+      Vue.set(this.editing, initiative.name, false)
+      if (!initiative.name) {
+        this.addingInitiative = false
+      }
+    },
     deleteInitiative(name) {
       if (confirm(`Are you sure you want to remove the ${name} initiative?`)) {
         this.state.deleteInitiative(name)
@@ -134,7 +144,7 @@ export default {
   .add-new-link {
     color: #1cb8c4;
     font-size: 18px;
-    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   .initiatives-setup-container {
