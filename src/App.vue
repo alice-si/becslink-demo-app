@@ -94,4 +94,15 @@ export default {
 #toast-container > div {
     opacity: 0.99;
 }
+
+.manage-icon {
+  color: #1cb8c4;
+  text-align: left;
+  font-size: 30px !important;
+}
+
+.manage-icon :hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 </style>

@@ -35,6 +35,22 @@ let State = {
     this.defaultDelete(name, 'initiatives');
   },
 
+  // Each goal should have createdAt property
+  updateServiceProviderGoal(serviceProvider, goal) {
+    console.log(`updating goals for service provider ${serviceProvider}`)
+    if (!this.serviceProviders[serviceProvider].goals) {
+      Vue.set(this.serviceProviders[serviceProvider], 'goals', {})
+    }
+    Vue.set(this.serviceProviders[serviceProvider].goals, goal.createdAt, Object.assign({}, goal))
+    this.updateCollectionInLocalStorage('serviceProviders')
+  },
+
+  deleteServiceProviderGoal(serviceProvider, goal) {
+    console.log(`deleting goal "${goal.name}" for service provider ${serviceProvider}`)
+    Vue.delete(this.serviceProviders[serviceProvider].goals, goal.createdAt)
+    this.updateCollectionInLocalStorage('serviceProviders')
+  },
+
   loadCollectionDataFromLocalStorage(collection) {
     try {
       console.log(`Loading ${collection} data from local storage`)

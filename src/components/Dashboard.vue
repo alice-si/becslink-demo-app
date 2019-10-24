@@ -27,7 +27,7 @@
 <script>
 import {FormWizard, TabContent} from 'vue-form-wizard'
 import InitiativesSetup from './Initiatives/InitiativesSetup'
-import GoalsSetup from './GoalsSetup'
+import GoalsSetup from './Goals/GoalsSetup'
 import StudentsAndTeachersSetup from './StudentsAndTeachersSetup'
 import SponsorsAndESGsSetup from './SponsorsAndESGsSetup'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
