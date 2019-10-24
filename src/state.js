@@ -41,7 +41,7 @@ let State = {
     if (!this.serviceProviders[serviceProvider].goals) {
       Vue.set(this.serviceProviders[serviceProvider], 'goals', {})
     }
-    Vue.set(this.serviceProviders[serviceProvider].goals, goal.createdAt, Object.assign({}, goal))
+    Vue.set(this.serviceProviders[serviceProvider].goals, goal.createdAt, goal)
     this.updateCollectionInLocalStorage('serviceProviders')
   },
 
@@ -80,7 +80,7 @@ let State = {
 
   defaultUpsert(elem, collection) {
     console.log(`Updating collection: ${collection}`)
-    Vue.set(this[collection], elem.name, elem)
+    Vue.set(this[collection], elem.name, Object.assign({}, elem))
     this.updateCollectionInLocalStorage(collection)
   },
 

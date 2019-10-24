@@ -20,6 +20,7 @@
         <span class="mdl-textfield__error">Input is not a number!</span>
       </div>
     </td>
+    <td></td>
     <td>
       <div v-mdl class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input v-model="goal.allocate" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">

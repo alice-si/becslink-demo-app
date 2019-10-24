@@ -3,7 +3,7 @@
     <h5>Goals for {{ serviceProvider }}</h5>
 
     <table v-mdl class="mdl-data-table mdl-js-data-table">
-      <thead  v-bind:class="{ darkened: (goalOnEditName != '' && !addingNewGoal) }">
+      <thead  v-bind:class="{ darkened: (goalOnEditName || addingNewGoal) }">
       <tr>
         <th> Goal </th>
         <th> Cost per unit </th>
@@ -16,7 +16,7 @@
 
 
       <tbody>
-        <tr v-for="goal in goals" :key="goal.createdAt">
+        <tr v-for="goal in goals" :class="{ hidden: goal.name == goalOnEditName }" :key="goal.createdAt">
           <!-- <tbody v-if="!addingNewGoal && !goalOnEditName != goal.name"> -->
             <td v-if="goalOnEditName != goal.name">
               {{ goal.name }}
@@ -42,22 +42,22 @@
             </td>
           <!-- </tbody> -->
 
-
-
-          <GoalFormRow
-            class="form-row"
-            v-if="goalOnEditName == goal.name && !addingNewGoal"
-            :onSaveButtonClick="saveGoal"
-            :onCancelButtonClick="onCancelButtonClick"
-            :goal="goalOnEditData" />
         </tr>
+
+        <!-- <GoalFormRow
+          class="form-row"
+          v-if="goalOnEditName"
+          :onSaveButtonClick="saveGoal"
+          :onCancelButtonClick="onCancelButtonClick"
+          :goal="goalOnEditData" /> -->
 
         <GoalFormRow
           class="form-row"
-          v-if="addingNewGoal"
+          v-if="addingNewGoal || goalOnEditName"
           :onSaveButtonClick="saveGoal"
           :onCancelButtonClick="onCancelButtonClick"
-          :goal="goalOnEditData" />
+          :goal="goalOnEditData" />  
+        
       </tbody>
     </table>
 
@@ -129,7 +129,7 @@ export default {
     saveGoal() {
       this.validateGoalData()
 
-      let newGoal = Object.assign(this.goalOnEditData)
+      let newGoal = Object.assign({}, this.goalOnEditData)
       if (!newGoal.createdAt) {
         newGoal.createdAt = Date.now()
       }
@@ -183,6 +183,10 @@ tr th {
 
 .darkened {
   opacity: 0.5;
+}
+
+.hidden {
+  display: none;
 }
 
 </style>
