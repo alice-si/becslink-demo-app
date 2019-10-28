@@ -5,11 +5,19 @@ function getLocalStorageKey(collection) {
 }
 
 let State = {
+
+  // COLLECTIONS
+  collections: ['initiatives', 'schools', 'serviceProviders', 'students'],
+
   // FIELDS
 
   initiatives: {},
   schools: {},
   serviceProviders: {},
+  students: {
+    'asd': { id: 'asd' },
+    'qwe': { id: 'qwe' },
+  },
 
   hacks: {},
 
@@ -33,6 +41,24 @@ let State = {
 
   deleteInitiative(name) {
     this.defaultDelete(name, 'initiatives');
+  },
+
+  addStudent(student) {
+    console.log(`Adding student: ${student.id}`);
+    Vue.set(this.students, student.id, Object.assign({}, student))
+  },
+
+  addStudents(students) {
+    for (let student of students) {
+      this.addStudent(student)
+    }
+    this.updateCollectionInLocalStorage('students')
+  },
+
+  deleteAllStudents() {
+    console.log('Deleting all students')
+    Vue.set(this, 'students', {})
+    this.updateCollectionInLocalStorage('students')
   },
 
   // Each goal should have createdAt property
@@ -67,7 +93,7 @@ let State = {
 
   // It should be called once when the app is loaded
   loadStateFromLocalStorage() {
-    for (let collection of ['initiatives', 'schools', 'serviceProviders']) {
+    for (let collection of this.collections) {
       this.loadCollectionDataFromLocalStorage(collection)
     }
   },
@@ -98,7 +124,7 @@ let State = {
   },
 
   clearState() {
-    for (let collection of ['initiatives', 'schools', 'serviceProviders']) {
+    for (let collection of this.collections) {
       console.log(`Removing collection: ${collection}`)
       this.clearCollection(collection)
     }

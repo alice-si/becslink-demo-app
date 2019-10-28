@@ -8,7 +8,7 @@
       :clear-on-select="false"
       :preserve-search="true"
       :searchable="false"
-      :deselectLabel="false"
+      :deselectLabel="''"
       selectLabel=""
       placeholder="Pick some"
       label="name" track-by="name"

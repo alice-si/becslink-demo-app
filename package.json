@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "human-readable-ids": "^1.0.4",
     "material-components-web": "^3.2.0",
+    "qrcode": "^1.4.2",
+    "qrcode.vue": "^1.6.3",
     "vue": "^2.6.10",
     "vue-form-wizard": "^0.8.4",
     "vue-material": "^1.0.0-beta-11",
