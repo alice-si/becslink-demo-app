@@ -2,7 +2,7 @@
   <div>
     <h5>Goals for {{ serviceProvider }}</h5>
 
-    <table v-mdl class="mdl-data-table mdl-js-data-table">
+    <table class="mdl-data-table mdl-js-data-table">
       <!-- <thead  v-bind:class="{ darkened: (goalOnEditName || addingNewGoal) }"> -->
       <thead>
       <tr>

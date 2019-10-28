@@ -1,5 +1,5 @@
 <template>
-  <table v-mdl class="mdl-data-table mdl-js-data-table">
+  <table class="mdl-data-table mdl-js-data-table">
     <thead>
       <tr>
         <th> QR code </th>

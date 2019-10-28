@@ -7,16 +7,22 @@ function getLocalStorageKey(collection) {
 let State = {
 
   // COLLECTIONS
-  collections: ['initiatives', 'schools', 'serviceProviders', 'students'],
+  collections: ['initiatives', 'schools', 'serviceProviders', 'students', 'esgs'],
 
   // FIELDS
 
   initiatives: {},
   schools: {},
   serviceProviders: {},
-  students: {
-    'asd': { id: 'asd' },
-    'qwe': { id: 'qwe' },
+  students: {},
+  esgs: {
+    'ESG1': {
+      name: 'ESG1',
+      goals: {
+        'goal1': 34,
+        'goal2': 45,
+      }
+    }
   },
 
   hacks: {},
@@ -53,6 +59,22 @@ let State = {
       this.addStudent(student)
     }
     this.updateCollectionInLocalStorage('students')
+  },
+
+  deleteESG(name) {
+    Vue.delete(this.esgs, name)
+    this.updateCollectionInLocalStorage('esgs')
+  },
+
+  upsertESG(elem) {
+    // TODO remove
+    elem.goals = {
+      'Goal 1': 12,
+      'Goal 2': 34,
+      'Goal 3': 23,
+    }
+    Vue.set(this.esgs, elem.name, Object.assign({}, elem))
+    this.updateCollectionInLocalStorage('esgs')
   },
 
   deleteAllStudents() {

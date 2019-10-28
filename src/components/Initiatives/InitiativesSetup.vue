@@ -138,10 +138,7 @@ export default {
 
 <style scoped>
   .add-new-link {
-    cursor: pointer
-  }
-
-  .add-new-link {
+    cursor: pointer;
     color: #1cb8c4;
     font-size: 18px;
     margin-bottom: 30px;

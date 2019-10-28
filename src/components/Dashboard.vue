@@ -37,7 +37,7 @@ import {FormWizard, TabContent} from 'vue-form-wizard'
 import InitiativesSetup from './Initiatives/InitiativesSetup'
 import GoalsSetup from './Goals/GoalsSetup'
 import StudentsAndTeachersSetup from './Students/StudentsAndTeachersSetup'
-import SponsorsAndESGsSetup from './SponsorsAndESGsSetup'
+import SponsorsAndESGsSetup from './ESGs/SponsorsAndESGsSetup'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     onComplete() {
-      alert('Yay. Done!')
+      window.toastr.success('Yay. Done!')
     },
     onStepChanged(oldStep, newStep) {
       console.log(`Step switched from ${oldStep} to ${newStep}`)

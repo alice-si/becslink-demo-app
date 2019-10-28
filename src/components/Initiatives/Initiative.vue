@@ -65,17 +65,6 @@
 
         <!-- Accent-colored raised button with ripple -->
         <div class="manage-icons">
-          <!-- <span v-on:click="saveInitiative(inputs, data)"
-            v-if="editing"
-            class="manage-icon" >
-            <i class="material-icons">save</i>
-          </span> -->
-
-          <!-- <span v-on:click="startEditing(data)"
-            v-if="!editing" 
-            class="manage-icon" >
-            <i class="material-icons">edit</i>
-          </span> -->
 
           <button v-mdl v-on:click="cancelEditing(data)" v-if="editing" 
             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
@@ -97,16 +86,8 @@
             <i class="material-icons">delete</i>
           </button>
 
-          <!-- <span v-on:click="deleteInitiative(data.name)" v-if="!editing"
-            class="manage-icon">
-            <i class="material-icons">delete</i>
-          </span> -->
         </div>
 
-        <!-- <div v-if="!editing">
-          Name: {{ data.name }}
-          Cost: {{ data.cost }}
-        </div> -->
       </div>
     </div>
       
