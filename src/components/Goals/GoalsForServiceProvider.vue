@@ -163,6 +163,7 @@ export default {
   color: #1cb8c4;
   font-size: 14px;
   margin-top: 20px;
+  cursor: pointer;
   /* margin-bottom: 100px; */
 }
 
@@ -171,9 +172,6 @@ export default {
   /* padding-left: 30px; */
 }
 
-.add-new-link {
-  cursor: pointer;
-}
 
 td,th {
   width: 15vw;

@@ -6,13 +6,19 @@
       <label class="mdl-textfield__label" for="sample1">Name</label>
     </div>
 
+    <ESGGoalsSelector
+      :goals="model.goals"
+      @goalsChanged="goalsChanged" />
+
   </form>
 </template>
 
 <script>
+import ESGGoalsSelector from './ESGGoalSelector'
 
 export default {
   components: {
+    ESGGoalsSelector
   },
   data() {
     return {
@@ -28,7 +34,9 @@ export default {
     }
   },
   methods: {
-
+    goalsChanged(newGoals) {
+      this.model.goals = newGoals
+    }
   }
 }
 </script>

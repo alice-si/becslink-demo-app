@@ -30,10 +30,10 @@
     </td>
     <td>
       <span @click="onCancelButtonClick()" class="manage-icon">
-        <i class="material-icons">cancel</i>
+        <i class="material-icons">close</i>
       </span>
       <span @click="onSaveButtonClick()" class="manage-icon">
-        <i class="material-icons">save</i>
+        <i class="material-icons">done</i>
       </span>
     </td>
   </tr>

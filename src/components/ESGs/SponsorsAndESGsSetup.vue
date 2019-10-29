@@ -12,18 +12,18 @@
 
     <div class="mdl-grid">
       <ESG
-        v-for="esgName in esgs"
-        v-bind:key="esgName"
-        v-bind:isNew="false"
-        v-bind:name="esgName"
-        />
-
-      <ESG
+        class="esg"
         v-if="addingNewESG"
         v-bind:name="''"
         v-bind:isNew="true"
-        v-bind:cancelAddingNew="cancelAddingNew"
-        />
+        v-bind:cancelAddingNew="cancelAddingNew" />
+
+      <ESG
+        class="esg"
+        v-for="esgName in esgs"
+        v-bind:key="esgName"
+        v-bind:isNew="false"
+        v-bind:name="esgName" />
     </div>
   </div>
 </template>
@@ -67,4 +67,10 @@ export default {
     font-size: 18px;
     margin-bottom: 30px;
   }
+
+  .esg {
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
 </style>

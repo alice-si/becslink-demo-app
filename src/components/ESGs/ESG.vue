@@ -1,5 +1,7 @@
 <template>
   <div class="md-layout-item md-size-50 initiative">
+
+    <!-- {{ inputs }} -->
      
     <div class="mdl-cell mdl-cell--12-col">
       <div class="mdl-card mdl-shadow--2dp">
@@ -13,7 +15,7 @@
           :data="dataToDisplay"
           />
 
-        <!-- {{ inputs }} -->
+        
         <div class="manage-icons">
           <button v-on:click="onCloseButtonClick()" v-if="formDisplayed" 
             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab">
@@ -113,6 +115,8 @@ export default {
       this.state.upsertESG(Object.assign({}, this.inputs))
       if (this.isNew) {
         this.cancelAddingNew()
+      } else {
+        Vue.set(this, 'editing', false)
       }
       
     }
@@ -143,6 +147,10 @@ export default {
 
   .manage-icons button {
     margin: 3px;
+  }
+
+  .mdl-card.mdl-card {
+    min-width: 600px;
   }
 
 </style>

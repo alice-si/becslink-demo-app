@@ -71,8 +71,9 @@ h3 {
 }
 
 .esg-goals {
-  min-height: 400px;
+  /* min-height: 400px; */
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 
 .esg-goals table {
@@ -82,6 +83,11 @@ h3 {
 
 th {
   font-size: 14px;
+  text-align: center;
+}
+
+td {
+  text-align: center;
 }
 
 </style>
